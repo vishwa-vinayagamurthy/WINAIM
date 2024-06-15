@@ -1,0 +1,11 @@
+CREATE TABLE opportunities (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER NOT NULL REFERENCES customers(id),
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  stage VARCHAR(50) NOT NULL,  -- e.g. "Prospecting", "Qualification", "Closed Won"
+  close_date DATE,
+  value DECIMAL(10, 2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
