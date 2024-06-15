@@ -1,0 +1,9 @@
+CREATE TABLE interactions (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER NOT NULL REFERENCES customers(id),
+  type VARCHAR(50) NOT NULL,  -- e.g. "Call", "Meeting", "Email"
+  description TEXT,
+  date DATE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
