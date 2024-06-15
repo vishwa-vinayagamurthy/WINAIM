@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="# customers">Customers</a></li>
+                <li><a href="# interactions">Interactions</a></li>
+                <li><a href="# opportunities">Opportunities</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="customers">
+            <h2>Customers</h2>
+            <table id="customers-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody id="customers-tbody">
+                    <!-- customer data will be displayed here -->
+                </tbody>
+            </table>
+            <button id="add-customer-btn">Add Customer</button>
+        </section>
+        <section id="interactions">
+            <h2>Interactions</h2>
+            <table id="interactions-table">
+                <thead>
+                    <tr>
+                        <th,ID</th>
+                        <th>Customer ID</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="interactions-tbody">
+                    <!-- interaction data will be displayed here -->
+                </tbody>
+            </table>
+            <button id="add-interaction-btn">Add Interaction</button>
+        </section>
+        <section id="opportunities">
+            <h2>Opportunities</h2>
+            <table id="opportunities-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer ID</th>
+                        <th>Stage</th>
+                        <th>Close Date</th>
+                    </tr>
+                </thead>
+                <tbody id="opportunities-tbody">
+                    <!-- opportunity data will be displayed here -->
+                </tbody>
+            </table>
+            <button id="add-opportunity-btn">Add Opportunity</button>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
