@@ -1,0 +1,54 @@
+// customers.js (model)
+const mongoose = require('mongoose');
+
+const customerSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  address: String,
+  industry: String,
+  companySize: Number
+});
+
+const Customer = mongoose.model('Customer', customerSchema);
+
+// customers.js (controller)
+const express = require('express');
+const router = express.Router();
+const Customer = require('./customer.model');
+
+router.get('/', async (req, res) => {
+  const customers = await Customer.find().exec();
+  res.json(customers);
+});
+
+router.post('/', async (req, res) => {
+  const customer = new Customer(req.body);
+  await customer.save();
+  res.json(customer);
+});
+
+router.get('/:id', async (req, res) => {
+  const customer = await Customer.findById(req.params.id).exec();
+  if (!customer) {
+    res.status(404).json({ error: 'Customer not found' });
+  } else {
+    res.json(customer);
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  const customer = await Customer.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec();
+  if (!customer) {
+    res.status(404).json({ error: 'Customer not found' });
+  } else {
+    res.json(customer);
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  await Customer.findByIdAndRemove(req.params.id).exec();
+  res.json({ message: 'Customer deleted' });
+});
+
+module.exports = router;
