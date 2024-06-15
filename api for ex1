@@ -1,0 +1,42 @@
+const express = require('express');
+const app = express();
+
+// Customers API
+app.get('/customers', async (req, res) => {
+  const customers = await Customer.find().exec();
+  res.json(customers);
+});
+
+app.get('/customers/:id', async (req, res) => {
+  const customer = await Customer.findById(req.params.id).exec();
+  if (!customer) {
+    res.status(404).json({ error: 'Customer not found' });
+  } else {
+    res.json(customer);
+  }
+});
+
+app.post('/customers', async (req, res) => {
+  const customer = new Customer(req.body);
+  await customer.save();
+  res.status(201).json(customer);
+});
+
+app.put('/customers/:id', async (req, res) => {
+  const customer = await Customer.findById(req.params.id).exec();
+  if (!customer) {
+    res.status(404).json({ error: 'Customer not found' });
+  } else {
+    customer.name = req.body.name;
+    customer.email = req.body.email;
+    // ...
+    await customer.save();
+    res.json(customer);
+  }
+});
+
+app.delete('/customers/:id', async (req, res) => {
+  await Customer.findByIdAndRemove(req.params.id).exec();
+  res.status(204).json();
+});
+
